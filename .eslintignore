@@ -1,2 +1,12 @@
+/__mocks__/fileMock.js
+/__mocks__/styleMock.js
+/webpack.dev.config.js
+/webpack.prod.config.js
+/webpack.server.config.js
+/.eslintrc.js
+/.babelrc
+/src/frontend/js/out
+/src/frontend/js/test
+/src/frontend/project_documentation
+/src/frontend/templates/project_documentation
 *.test.js
-/doc
