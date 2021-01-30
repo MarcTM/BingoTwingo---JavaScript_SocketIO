@@ -16,8 +16,6 @@ jobs:
         env:
           DEFAULT_BRANCH: githubActions_improvement
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: "Run jest tests"
-      #   run: |
-      #     npm install jest
-      #     npm run test
+          LINTER_RULES_PATH: /
+          JAVASCRIPT_ES_CONFIG_FILE: eslintrc.json
+          VALIDATE_JAVASCRIPT_ES: true
