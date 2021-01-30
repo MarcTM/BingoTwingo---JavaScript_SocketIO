@@ -42,7 +42,7 @@ jobs:
       - name: Builds static files
         run: |
           npm install
-          npm run build
+          npm run buildProd
         
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
