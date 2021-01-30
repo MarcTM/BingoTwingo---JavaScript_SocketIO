@@ -39,6 +39,9 @@ jobs:
     needs: [syntax_check_job, test_execution_job]
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Builds static files
         run: |
           npm install
