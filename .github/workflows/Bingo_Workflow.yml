@@ -1,0 +1,23 @@
+name: Bingo_Workflow
+
+on: push
+
+jobs:
+  syntax_check_job:
+    name: syntax_check_job
+    runs-on: ubuntu-latest
+
+    steps:
+      # - name: "Checkout code syntax"
+      #   uses: actions/checkout@v2
+
+      - name: "Check code syntax"
+      - uses: github/super-linter@v3
+        env:
+          DEFAULT_BRANCH: githubActions_improvement
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: "Run jest tests"
+      #   run: |
+      #     npm install jest
+      #     npm run test
