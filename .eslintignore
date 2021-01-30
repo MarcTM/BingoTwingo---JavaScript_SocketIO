@@ -1,3 +1,2 @@
-doc
-bombo.test.js
-card.test.js
+*.test.js
+/doc
