@@ -3,22 +3,24 @@ name: Bingo_Workflow
 on: push
 
 jobs:
-  # syntax_check_job:
-  #   name: syntax_check_job
-  #   runs-on: ubuntu-latest
+  syntax_check_job:
+    name: syntax_check_job
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        env:
+          SYNTAX_CHECK_JOB: ${{ job.status }}
 
-  #     - name: Check code syntax
-  #       uses: github/super-linter@v3
-  #       env:
-  #         DEFAULT_BRANCH: githubActions_improvement
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         LINTER_RULES_PATH: /
-  #         JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
-  #         VALIDATE_JAVASCRIPT_ES: true
+      - name: Check code syntax
+        uses: github/super-linter@v3
+        env:
+          DEFAULT_BRANCH: githubActions_improvement
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LINTER_RULES_PATH: /
+          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
+          VALIDATE_JAVASCRIPT_ES: true
 
   # test_execution_job:
   #   name: test_execution_job
@@ -76,7 +78,12 @@ jobs:
   notification_job:
     name: notification_job
     runs-on: ubuntu-latest
-    # needs: deploy_job
+    needs: syntax_check_job
+    env:
+      syntax_check_job: ${{ <expression> }}
+      test_execution_job: ${{ <expression> }}
+      build_statics_job: ${{ <expression> }}
+      deploy_job: ${{ <expression> }}
 
     steps:
       - name: Checkout code
@@ -86,3 +93,4 @@ jobs:
         uses: ./.github/actions/notification
         with:
           destination: ${{ secrets.destination_email }}
+          first_job: $SYNTAX_CHECK_JOB

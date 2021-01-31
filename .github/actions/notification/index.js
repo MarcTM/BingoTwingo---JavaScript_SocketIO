@@ -2,6 +2,7 @@ const core = require("@actions/core");
 const sendmail = require('sendmail')();
 
 const destination = core.getInput("destination");
+const first_job = core.getInput("first_job");
  
 sendmail({
     from: 'marctorresmartinez@gmail.com',
@@ -13,7 +14,7 @@ sendmail({
         siguientes resultados</p>
 
         <ul>
-            <li>syntax_check_job: resultado asociada</li>
+            <li>syntax_check_job: ${{ first_job }}</li>
             <li>test_execution_job: resultado asociada</li>
             <li>build_statics_job: resultado asociada</li>
             <li>deploy_job: resultado asociada</li>
