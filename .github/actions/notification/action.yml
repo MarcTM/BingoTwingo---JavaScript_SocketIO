@@ -1,0 +1,12 @@
+name: 'Send email at push'
+description: 'Send email at push with some information about the other Github Actions jobs'
+
+inputs:
+  destination:
+    description: 'Destination email'
+    required: true
+    default: 'marctorresmartinez@gmail.com'
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
