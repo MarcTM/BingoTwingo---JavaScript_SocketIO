@@ -7,7 +7,8 @@ inputs:
     required: true
     default: 'marctorresmartinez@gmail.com'
 
-  syntax_check_job: 'First job status'
+  syntax_check_job:
+    description: 'First job status'
     required: true
     default: 'undefined'
 
