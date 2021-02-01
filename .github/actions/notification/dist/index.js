@@ -201,6 +201,11 @@ const core = __nccwpck_require__(2619);
 const sendmail = __nccwpck_require__(5906)();
 
 const destination = core.getInput("destination");
+const syntax_check_job = core.getInput("syntax_check_job");
+const test_execution_job = core.getInput("test_execution_job");
+const build_statics_job = core.getInput("build_statics_job");
+const deploy_job = core.getInput("deploy_job");
+
  
 sendmail({
     from: 'marctorresmartinez@gmail.com',
@@ -212,10 +217,7 @@ sendmail({
         siguientes resultados</p>
 
         <ul>
-            <li>syntax_check_job: resultado asociada</li>
-            <li>test_execution_job: resultado asociada</li>
-            <li>build_statics_job: resultado asociada</li>
-            <li>deploy_job: resultado asociada</li>
+            <li>test_execution_job: ${{ test_execution_job }}</li>
         </ul>
     `
   }, function(err, reply) {

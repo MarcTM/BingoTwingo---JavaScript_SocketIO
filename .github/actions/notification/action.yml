@@ -11,7 +11,7 @@ inputs:
   #   description: 'First job status'
   #   required: true
 
-  job2:
+  test_execution_job:
     description: 'Second job status'
     required: true
 
