@@ -54,6 +54,8 @@ async function main() {
         </ul>
     `,
   });
+
+  console.log(test_execution_job)
 }
 
 main().catch(console.error); 
