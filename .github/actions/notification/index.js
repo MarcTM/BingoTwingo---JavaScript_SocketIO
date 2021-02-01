@@ -1,14 +1,13 @@
 const core = require("@actions/core");
-const sendmail = require('sendmail')();
+const nodemailer = require("nodemailer");
 
 const destination = core.getInput("destination");
 const password = core.getInput("email_password");
-// const syntax_check_job = core.getInput("syntax_check_job");
-// const test_execution_job = core.getInput("test_execution_job");
-// const build_statics_job = core.getInput("build_statics_job");
-// const deploy_job = core.getInput("deploy_job");
+const syntax_check_job = core.getInput("job1");
+const test_execution_job = core.getInput("job2");
+const build_statics_job = core.getInput("job3");
+const deploy_job = core.getInput("job4");
 
-const nodemailer = require("nodemailer");
 
 async function main() {
 
@@ -23,10 +22,17 @@ async function main() {
 
   let info = await transporter.sendMail({
     from: '"Marc Torres 👻" <marctorresmartinez@.com>',
-    to: "marctorresmartinez@gmail.com",
-    subject: "Hello ✔",
+    to: destination,
+    subject: "Se ha realizado un push en la rama githubActions_improvement que ha provocado la ejecución del workflow Bingo_Workflow con los siguientes resultados: ✔",
     text: "Hello world?",
-    html: "<b>Hello world?</b>",
+    html: `
+        <ul>
+            <li>syntax_check_job: ${{ syntax_check_job }}</li>
+            <li>test_execution_job: ${{ test_execution_job }}</li>
+            <li>build_statics_job: ${{ build_statics_job }}</li>
+            <li>deploy_job: ${{ deploy_job }}</li>
+        </ul>
+    `,
   });
 }
 

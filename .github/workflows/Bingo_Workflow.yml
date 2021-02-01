@@ -3,82 +3,82 @@ name: Bingo_Workflow
 on: push
 
 jobs:
-  # syntax_check_job:
-  #   name: syntax_check_job
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     status: ${{ job.status }}
+  syntax_check_job:
+    name: syntax_check_job
+    runs-on: ubuntu-latest
+    outputs:
+      status: ${{ job.status }}
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-  #     - name: Check code syntax
-  #       uses: github/super-linter@v3
-  #       env:
-  #         DEFAULT_BRANCH: githubActions_improvement
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         LINTER_RULES_PATH: /
-  #         JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
-  #         VALIDATE_JAVASCRIPT_ES: true
+      - name: Check code syntax
+        uses: github/super-linter@v3
+        env:
+          DEFAULT_BRANCH: githubActions_improvement
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LINTER_RULES_PATH: /
+          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
+          VALIDATE_JAVASCRIPT_ES: true
 
-  # test_execution_job:
-  #   name: test_execution_job
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     status: ${{ job.status }}
+  test_execution_job:
+    name: test_execution_job
+    runs-on: ubuntu-latest
+    outputs:
+      status: ${{ job.status }}
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
         
-  #     - name: Run jest tests
-  #       run: |
-  #         npm install jest
-  #         npm run test
+      - name: Run jest tests
+        run: |
+          npm install jest
+          npm run test
 
-  # build_statics_job:
-  #   name: build_statics_job
-  #   runs-on: ubuntu-latest
-  #   needs: [syntax_check_job, test_execution_job]
-  #   outputs:
-  #     status: ${{ job.status }}
+  build_statics_job:
+    name: build_statics_job
+    runs-on: ubuntu-latest
+    needs: [syntax_check_job, test_execution_job]
+    outputs:
+      status: ${{ job.status }}
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-  #     - name: Builds static files
-  #       run: |
-  #         npm install
-  #         npm run buildProd
+      - name: Builds static files
+        run: |
+          npm install
+          npm run buildProd
         
-  #     - name: Upload artifacts
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: dist-without-markdown
-  #         path: dist
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist-without-markdown
+          path: dist
 
-  # deploy_job:
-  #   name: deploy_job
-  #   runs-on: ubuntu-latest
-  #   needs: build_statics_job
-  #   outputs:
-  #     status: ${{ job.status }}
+  deploy_job:
+    name: deploy_job
+    runs-on: ubuntu-latest
+    needs: build_statics_job
+    outputs:
+      status: ${{ job.status }}
 
-  #   steps:
-  #     - name: Download artifacts
-  #       uses: actions/download-artifact@v2
-  #       with: 
-  #         name: dist-without-markdown
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with: 
+          name: dist-without-markdown
       
-  #     - name: Deploy artifacts on surge
-  #       uses: dswistowski/surge-sh-action@v1
-  #       with:
-  #         domain: 'marctorres.surge.sh'
-  #         project: '.'
-  #         login: ${{ secrets.surge_login }}
-  #         token: ${{ secrets.surge_token }}
+      - name: Deploy artifacts on surge
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          domain: 'marctorres.surge.sh'
+          project: '.'
+          login: ${{ secrets.surge_login }}
+          token: ${{ secrets.surge_token }}
           
 
   notification_job:
@@ -96,4 +96,7 @@ jobs:
         with:
           destination: ${{ secrets.destination_email }}
           email_password: ${{ secrets.email_password }}
-          # test_execution_job: ${{ needs.test_execution_job.outputs.status }}
+          job1: ${{ needs.syntax_check_job.outputs.status }}
+          job2: ${{ needs.test_execution_job.outputs.status }}
+          job3: ${{ needs.build_statics_job.outputs.status }}
+          job4: ${{ needs.deploy_job.outputs.status }}
