@@ -1,6 +1,9 @@
 name: Bingo_Workflow
 
-on: push
+on: 
+  push:
+    branches:
+      - githubActions_improvement
 
 jobs:
   syntax_check_job:
