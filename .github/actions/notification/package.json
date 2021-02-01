@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@actions/core": "^1.2.6",
+    "nodemailer": "^6.4.17",
     "sendmail": "^1.6.1"
   }
 }

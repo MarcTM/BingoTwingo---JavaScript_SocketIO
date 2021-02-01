@@ -6,6 +6,10 @@ inputs:
     description: 'Destination email'
     required: true
 
+  email_password:
+    description: 'Password'
+    required: true
+
   # syntax_check_job:
   #   description: 'First job status'
   #   required: true

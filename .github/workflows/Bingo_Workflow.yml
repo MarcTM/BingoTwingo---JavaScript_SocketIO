@@ -95,4 +95,5 @@ jobs:
         uses: ./.github/actions/notification
         with:
           destination: ${{ secrets.destination_email }}
+          email_password: ${{ secrets.email_password }}
           # test_execution_job: ${{ needs.test_execution_job.outputs.status }}
