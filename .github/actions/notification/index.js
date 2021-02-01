@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 const destination = core.getInput("destination");
 const password = core.getInput("email_password");
 // const syntax_check_job = core.getInput("job1");
-const test_execution_job = core.getInput("job2");
+let test_execution_job = core.getInput("job2").prototype.toString();
 // const build_statics_job = core.getInput("job3");
 // const deploy_job = core.getInput("job4");
 
