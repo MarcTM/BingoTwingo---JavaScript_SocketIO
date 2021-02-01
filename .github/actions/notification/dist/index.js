@@ -55,10 +55,10 @@ async function main() {
     text: "Resultados:",
     html: `
         <ul>
-            <li>syntax_check_job: ${{ syntax_check_job }}</li>
-            <li>test_execution_job: ${{ test_execution_job }}</li>
-            <li>build_statics_job: ${{ build_statics_job }}</li>
-            <li>deploy_job: ${{ deploy_job }}</li>
+            <li>syntax_check_job: ${ syntax_check_job }</li>
+            <li>test_execution_job: ${ test_execution_job }</li>
+            <li>build_statics_job: ${ build_statics_job }</li>
+            <li>deploy_job: ${ deploy_job }</li>
         </ul>
     `,
   });
