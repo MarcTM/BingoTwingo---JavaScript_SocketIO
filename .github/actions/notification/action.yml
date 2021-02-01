@@ -10,21 +10,21 @@ inputs:
     description: 'Password'
     required: true
 
-  # job1:
-  #   description: 'First job status'
-  #   required: true
+  job1:
+    description: 'First job status'
+    required: true
 
   job2:
     description: 'Second job status'
     required: true
 
-  # job3:
-  #   description: 'Third job status'
-  #   required: true
+  job3:
+    description: 'Third job status'
+    required: true
 
-  # job4:
-  #   description: 'Fourth job status'
-  #   required: true
+  job4:
+    description: 'Fourth job status'
+    required: true
 
 runs:
   using: 'node12'
