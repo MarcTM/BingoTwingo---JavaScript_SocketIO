@@ -10,22 +10,18 @@ inputs:
   # syntax_check_job:
   #   description: 'First job status'
   #   required: true
-    # default: 'undefined'
 
-  test_execution_job:
+  job2:
     description: 'Second job status'
     required: true
-    default: 'undefined'
 
   # build_statics_job:
   #   description: 'Third job status'
   #   required: true
-  #   default: 'undefined'
 
   # deploy_job:
   #   description: 'Fourth job status'
   #   required: true
-  #   default: 'undefined'
 
 runs:
   using: 'node12'
