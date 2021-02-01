@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PRÁCTICA ENTREGABLE - MARC</title>
+	<style type="text/css">
+		body {
+			background-color: salmon;
+  			font-family: 'Courier New', monospace;
+  			padding: 20px;
+		}
+
+		img {
+			margin-bottom: 10px;
+		}
+
+		.center {
+			text-align: center;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 20px;
+			font-style: italic;
+		}
+
+		li {
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+
+	<h1 class="center">PRÁCTICA ENTREGABLE DE GITHUB ACTION SOBRE EL PROYECTO DE BINGO</h1>
+	<h2 class="center">MARC TORRES MARTÍNEZ</h2>
+
+	<br><br>
+
+	<h2>1 - Verificación de sintaxis correcta</h2>
+	<img src="./images/2.png" />
+	<p>Así quedaria el workflow por ahora.</p>
+	<p>Este coge el .eslintrc.js que el proyecto ya tenia, y además he añadido unos cuantos ficheros y carpetas al .eslintignore que el job no debe corregir.</p>
+	<img src="./images/1.png" />
+
+	<br><br>
+
+	<h2>2 - Ejecución de tests</h2>
+	<p>Añadir al workflow anterior el siguiente job:</p>
+	<img src="./images/3.png" />
+	<p>Con este podremos comprobar los tests que ya tenia el bingo. Los comandos que utiliza este job son <b>npm install jest</b> y <b>npm run test</b></p>
+	<img src="./images/4.png" />
+
+	<br><br>
+
+	<h2>3 - Generación de estáticos</h2>
+	<p>Añadir al workflow anterior el siguiente job:</p>
+	<img src="./images/5.png" />
+	<p>Este job realiza un <b>npm install</b> y un <b>npm run buildProd</b> para construir los ficheros estáticos en un solo directorio, en mi caso <i>/dist</i>.</p>
+	<p>Y luego de hacer esto sube los artefactos generados en la ruta <i>/dist</i>.</p>
+	<img src="./images/6.png" />
+
+	<br><br>
+
+	<h2>4 - Despliegue en surge.sh</h2>
+	<p>Con este job vamos a desplegar la aplicación en surge.sh</p>
+	<p>- Primero debemos instalar surge en nuestro proyecto local, <b>npm install -g surge</b></p>
+	<p>- Y también generar los ficheros estáticos localmente, <b>npm run buildProd</b></p>
+	<p>- Una vez generados, desde dentro de la carpeta /dist, ejecutar <b>surge</b> para establecer el dominio de la página por primera vez</p>
+	<img src="./images/7.png" />
+	<p>- Ahora ya modificar el workflow y añadir el job para el deploy:</p>
+	<img src="./images/8.png" />
+	<p>Las dos variables, <i>surge_login</i> y <i>surge_token</i>, serán secrets del repositorio de Github, que tendremos que crear antes de hacer el push. El token se puede obtener con <b>surge token</b> y el surge_login es el tu usuario de GitHub</p>
+	<img src="./images/9.png" />
+	<img src="./images/10.png" />
+	<img src="./images/11.png" />
+
+	<br><br>
+
+	<h2>5 - Envío de notificación al correo</h2>
+	<p>Para este job he tenido que permitir fuentes no seguras acceder a mi correo, he desactivado la seguridad en dos pasos, y he cambiado mi contraseña de correo.</p>
+	<p>Tambíen he puesto mi correo y contraseña en los secrets de GitHub de este proyecto, para usarlos en el workflow.</p>
+	<img src="./images/12.png" />
+	<label>Este es el job que he añadido al workflow, el cual gasta la action propia que he creado. Le pasa 6 inputs, uno para el correo destinatario al cual se le enviará el mensaje, el otro es mi contraseña de correo para poder usar mailsender, y los otros cuatro son el estado de cada job (si finalizó correctamente o no).</label>
+	<img src="./images/13.png" />
+	<label>Esta es la action propia que he creado. Para ello hice lo siguiente:</label>
+	<ol>
+		<li>Crear la carpeta <b>./github/actions/notification</b></li>
+		<li><b>npm init -y</b> para iniciar un proyecto de node con el que hacer la action</li>
+		<li><b>npm install --save @actions/core, npm install --save nodemailer, sudo npm install -g ncc</b></li>
+		<li>Implementar el código en el index.js para enviar un correo a mí mismo con nodemailer (primero probé con sendmail pero me dió problemas de autenticación y lo terminé haciendo con nodemailer).</li>
+		<img src="./images/14.png" />
+		<li>Con el comando <b>ncc build index.js</b> me permitia meter el index.js y todo el código de las librerías que estaba gastando en un solo index.js que se generaba en la carpeta dist.</li>
+	</ol>
+	<p>Luego de esto ya hice el push:</p>
+	<img src="./images/15.png" />
+	<img src="./images/16.png" />
+	<p>Y recibí el correo:</p>
+	<img src="./images/17.png" />
+	<label>Las respuestas que se encuentran en blanco fue porque el job no daba ninguna respuesta, pero por ejemplo el <b>deploy_job</b> dió <b>success</b>.</label>
+
+</body>
+</html>
