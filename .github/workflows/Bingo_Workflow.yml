@@ -22,20 +22,20 @@ jobs:
   #         JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
   #         VALIDATE_JAVASCRIPT_ES: true
 
-  test_execution_job:
-    name: test_execution_job
-    runs-on: ubuntu-latest
-    outputs:
-      status: ${{ job.status }}
+  # test_execution_job:
+  #   name: test_execution_job
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     status: ${{ job.status }}
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
         
-      - name: Run jest tests
-        run: |
-          npm install jest
-          npm run test
+  #     - name: Run jest tests
+  #       run: |
+  #         npm install jest
+  #         npm run test
 
   # build_statics_job:
   #   name: build_statics_job
@@ -84,7 +84,7 @@ jobs:
   notification_job:
     name: notification_job
     runs-on: ubuntu-latest
-    needs: test_execution_job
+    # needs: test_execution_job
     if: always()
 
     steps:
@@ -95,4 +95,4 @@ jobs:
         uses: ./.github/actions/notification
         with:
           destination: ${{ secrets.destination_email }}
-          test_execution_job: ${{ needs.test_execution_job.outputs.status }}
+          # test_execution_job: ${{ needs.test_execution_job.outputs.status }}

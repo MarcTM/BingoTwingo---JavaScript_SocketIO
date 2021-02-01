@@ -5,15 +5,14 @@ inputs:
   destination:
     description: 'Destination email'
     required: true
-    default: 'marctorresmartinez@gmail.com'
 
   # syntax_check_job:
   #   description: 'First job status'
   #   required: true
 
-  test_execution_job:
-    description: 'Second job status'
-    required: true
+  # test_execution_job:
+  #   description: 'Second job status'
+  #   required: true
 
   # build_statics_job:
   #   description: 'Third job status'
