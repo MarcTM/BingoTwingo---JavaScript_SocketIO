@@ -3,10 +3,16 @@ const nodemailer = require("nodemailer");
 
 const destination = core.getInput("destination");
 const password = core.getInput("email_password");
-let syntax_check_job = core.getInput("job1");
-let test_execution_job = core.getInput("job2");
-let build_statics_job = core.getInput("job3");
-let deploy_job = core.getInput("job4");
+
+let syntax_check_job;
+let test_execution_job;
+let build_statics_job;
+let deploy_job;
+
+core.getInput("job1") == 'success' ? syntax_check_job = 'success' : syntax_check_job = "error";
+core.getInput("job2") == 'success' ? test_execution_job = 'success' : test_execution_job = "error";
+core.getInput("job3") == 'success' ? build_statics_job = 'success' : build_statics_job = "error";
+core.getInput("job4") == 'success' ? deploy_job = 'success' : deploy_job = "error";
 
 
 async function main() {
@@ -18,7 +24,6 @@ async function main() {
       pass: password,
     },
   });
-
 
   let info = await transporter.sendMail({
     from: '"Marc Torres 👻" <marctorresmartinez@.com>',
@@ -34,8 +39,6 @@ async function main() {
         </ul>
     `,
   });
-
-  console.log(test_execution_job)
 }
 
 main().catch(console.error); 
