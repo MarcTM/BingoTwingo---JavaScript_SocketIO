@@ -7,25 +7,25 @@ inputs:
     required: true
     default: 'marctorresmartinez@gmail.com'
 
-  syntax_check_job:
-    description: 'First job status'
-    required: true
-    default: 'undefined'
+  # syntax_check_job:
+  #   description: 'First job status'
+  #   required: true
+    # default: 'undefined'
 
   test_execution_job:
     description: 'Second job status'
     required: true
     default: 'undefined'
 
-  build_statics_job:
-    description: 'Third job status'
-    required: true
-    default: 'undefined'
+  # build_statics_job:
+  #   description: 'Third job status'
+  #   required: true
+  #   default: 'undefined'
 
-  deploy_job:
-    description: 'Fourth job status'
-    required: true
-    default: 'undefined'
+  # deploy_job:
+  #   description: 'Fourth job status'
+  #   required: true
+  #   default: 'undefined'
 
 runs:
   using: 'node12'
