@@ -116,7 +116,7 @@ jobs:
       - name: Last update
         run: |
             sed -i '$d' README.md
-            echo -e "\n - Last Bingo update on `date` -" >> README.md
+            echo -e "\n  Last\ Bingo\ update\ on\ `date`  " >> README.md
 
       - name: Save README on GitHub
         run: |
