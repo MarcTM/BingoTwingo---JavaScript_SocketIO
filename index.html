@@ -26,6 +26,10 @@
 		li {
 			margin-bottom: 10px;
 		}
+
+		img {
+			display: block;
+		}
 	</style>
 </head>
 <body>
@@ -96,6 +100,19 @@
 	<p>Y recibí el correo:</p>
 	<img src="./images/17.png" />
 	<label>Las respuestas que se encuentran en blanco fue porque el job no daba ninguna respuesta, pero por ejemplo el <b>deploy_job</b> dió <b>success</b>.</label>
+
+	<br><br>
+
+	<h2>6 - Actualización automática del README cuando el despliegue en surge.sh sea correcto</h2>
+	<p>Esto nos sirve para cada vez que hagamos un push y la aplicación se despliegue en surge, automáticamente GitHub modificará el README, por lo tanto añadirá al final el dia en el que se hizo ese último commit/actualización.</p>
+	<p>- Para ello, simplemente añadir el siguiente job en el workflow:</p>
+	<img src="./images/18.png" />
+	<p>Y al hacer un push, simplemente esperar a que se termine de ejecutar el workflow e ir a ver el último commit que se hizo en el README.md:</p>
+	<img src="./images/19.png" />
+	<img src="./images/20.png" />
+	<label>Y aquí el commit:</label>
+	<img src="./images/21.png" />
+	<img src="./images/22.png" />
 
 </body>
 </html>
