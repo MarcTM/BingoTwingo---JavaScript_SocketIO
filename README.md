@@ -98,4 +98,5 @@ $ sudo n stable
 
 
 
- - Last Bingo update on Tue Feb  2 11:39:16 UTC 2021 -
+
+  Last\ Bingo\ update\ on\ Tue Feb  2 11:46:37 UTC 2021  
