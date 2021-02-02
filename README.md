@@ -97,4 +97,5 @@ $ sudo n stable
    [webpack]: <https://webpack.js.org/>
 
 
-[![N|Solid](https://lh3.googleusercontent.com/proxy/lV8-HvS-mrklSXCb96a9BHsa-oEQFD9vtc4xrAMRkJUfL1Rjc09PTSPbWg_WQV2PaWHlLDmI3rtHe4Au4bzB4qrOAJ5EsdCyzomxkUlma7L4l9qZrQXt6C0_IWlXt4uUtCY0j0iud64B6gfulTmkUnc-msves_E)](https://nodesource.com/products/nsolid)
+
+ - Last Bingo update on Tue Feb  2 11:39:16 UTC 2021 -
